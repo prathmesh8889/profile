@@ -43,6 +43,7 @@ if (!JWT_SECRET || JWT_SECRET.length < 32) {
 
 const pool = new Pool({
   connectionString: DATABASE_URL,
+  options: '-c search_path=insurance_portal,public',
   ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false,
   max: 10,
   idleTimeoutMillis: 30000,
@@ -108,6 +109,8 @@ function makeReference() { return `PAY-${Date.now()}-${crypto.randomBytes(4).toS
 
 async function initDb() {
   await pool.query(`
+    CREATE SCHEMA IF NOT EXISTS insurance_portal;
+    SET search_path TO insurance_portal, public;
     CREATE TABLE IF NOT EXISTS users (
       id SERIAL PRIMARY KEY,
       name VARCHAR(100) NOT NULL,
