@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SecureLife insurance customer portal for policy applications, claims, payment records and support.">
+  <title>SecureLife Insurance Portal</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" data-nav="home">Secure<span>Life</span></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Toggle navigation">☰</button>
+    <nav id="nav">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#plans" data-nav="plans">Plans</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+      <button class="link-btn" id="portalBtn" type="button">Customer Portal</button>
+      <button class="link-btn hidden" id="logoutBtn" type="button">Logout</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="publicView">
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Insurance service portal</p>
+          <h1>Manage your insurance journey in one secure place.</h1>
+          <p>Apply for policies, track claims, record premium payments and contact support from a responsive customer dashboard.</p>
+          <div class="actions">
+            <button class="primary" id="heroPortalBtn" type="button">Open Portal</button>
+            <a class="secondary" href="#plans">Explore Plans</a>
+          </div>
+          <p class="note">Policy approval, premium and coverage decisions are completed by the administrator. This portal does not provide financial advice.</p>
+        </div>
+        <div class="hero-card">
+          <div class="shield">✓</div>
+          <h2>Secure by design</h2>
+          <p>Hashed passwords, authenticated APIs, protected admin routes and database-backed records.</p>
+          <ul><li>Policy applications</li><li>Claim tracking</li><li>Payment records</li><li>Support enquiries</li></ul>
+        </div>
+      </section>
+
+      <section class="section" id="plans">
+        <div class="section-head">
+          <p class="eyebrow">Coverage categories</p>
+          <h2>Choose the protection you want to apply for</h2>
+          <p>Final terms and premium are assigned after review.</p>
+        </div>
+        <div class="plan-grid">
+          <article class="plan"><span>❤</span><h3>Life Insurance</h3><p>Protection for your family's long-term financial needs.</p></article>
+          <article class="plan"><span>✚</span><h3>Health Insurance</h3><p>Apply for health-related coverage and manage claims.</p></article>
+          <article class="plan"><span>🚗</span><h3>Car Insurance</h3><p>Vehicle protection with policy and claim tracking.</p></article>
+          <article class="plan"><span>⌂</span><h3>Home Insurance</h3><p>Coverage applications for your home and property.</p></article>
+        </div>
+      </section>
+
+      <section class="section split" id="contact">
+        <div>
+          <p class="eyebrow">Support</p><h2>Send an enquiry</h2>
+          <p>Ask about applications, policy status, claims, premium records or portal access. Your message is stored securely for the admin team.</p>
+          <div class="info-box"><strong>Service hours</strong><br>Monday-Saturday · 9:00 AM-6:00 PM</div>
+        </div>
+        <form class="card form-grid" id="contactForm">
+          <label>Full name<input id="contactName" required maxlength="100"></label>
+          <label>Email<input id="contactEmail" type="email" required maxlength="254"></label>
+          <label>Phone<input id="contactPhone" type="tel" maxlength="30"></label>
+          <label>Insurance type<select id="contactInsurance"><option value="">General enquiry</option><option>Life Insurance</option><option>Health Insurance</option><option>Car Insurance</option><option>Home Insurance</option><option>General Insurance</option></select></label>
+          <label class="full">Message<textarea id="contactMessage" required minlength="10" maxlength="1500"></textarea></label>
+          <button class="primary full" type="submit">Send Enquiry</button>
+          <p class="form-message full" id="contactMsg" role="status"></p>
+        </form>
+      </section>
+    </section>
+
+    <section class="section auth-wrap hidden" id="authView">
+      <div class="auth-card">
+        <div class="tabs"><button class="tab active" data-tab="login" type="button">Login</button><button class="tab" data-tab="register" type="button">Register</button></div>
+        <div id="loginPanel">
+          <h2>Welcome back</h2><p>Sign in to your customer or administrator account.</p>
+          <form id="loginForm" class="form-grid">
+            <label class="full">Email<input id="loginEmail" type="email" autocomplete="username" required></label>
+            <label class="full">Password<input id="loginPassword" type="password" autocomplete="current-password" required></label>
+            <button class="primary full" type="submit">Sign In</button><p class="form-message full" id="loginMsg" role="status"></p>
+          </form>
+        </div>
+        <div id="registerPanel" class="hidden">
+          <h2>Create customer account</h2><p>Register to submit and track your insurance requests.</p>
+          <form id="registerForm" class="form-grid">
+            <label class="full">Full name<input id="registerName" required maxlength="100"></label>
+            <label class="full">Email<input id="registerEmail" type="email" autocomplete="username" required></label>
+            <label class="full">Password<input id="registerPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" required></label>
+            <button class="primary full" type="submit">Create Account</button><p class="form-message full" id="registerMsg" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="dashboard hidden" id="userView">
+      <aside class="sidebar">
+        <div><p class="eyebrow">Customer</p><h2 id="userGreeting">Dashboard</h2><p id="userEmail" class="muted"></p></div>
+        <div class="side-nav">
+          <button data-section="overview" class="active">Overview</button><button data-section="policies">Policies</button><button data-section="claims">Claims</button><button data-section="payments">Payments</button><button data-section="settings">Settings</button>
+        </div>
+      </aside>
+      <div class="dash-content">
+        <section class="dash-section" data-panel="overview">
+          <div class="dash-title"><div><p class="eyebrow">Account overview</p><h1>Your insurance dashboard</h1></div><button class="primary" data-jump="policies" type="button">Apply for Policy</button></div>
+          <div class="stats" id="userStats"></div><div class="card"><h3>Recent activity</h3><div id="recentActivity" class="empty">No activity yet.</div></div>
+        </section>
+
+        <section class="dash-section hidden" data-panel="policies">
+          <div class="dash-title"><div><p class="eyebrow">Policies</p><h1>Applications & active policies</h1></div></div>
+          <div class="two-col">
+            <form class="card form-grid" id="policyForm">
+              <h3 class="full">Apply for a new policy</h3>
+              <label>Insurance type<select id="policyType" required><option>Life Insurance</option><option>Health Insurance</option><option>Car Insurance</option><option>Home Insurance</option><option>General Insurance</option></select></label>
+              <label>Plan<select id="policyPlan" required><option>Basic</option><option>Standard</option><option>Premium</option></select></label>
+              <label class="full">Requested coverage (₹)<input id="policyCoverage" type="number" min="10000" step="1000" required></label>
+              <button class="primary full" type="submit">Submit Application</button><p class="form-message full" id="policyMsg"></p>
+            </form>
+            <div class="card"><h3>Your policies</h3><div id="policyList" class="list"></div></div>
+          </div>
+        </section>
+
+        <section class="dash-section hidden" data-panel="claims">
+          <div class="dash-title"><div><p class="eyebrow">Claims</p><h1>Submit and track claims</h1></div></div>
+          <div class="two-col">
+            <form class="card form-grid" id="claimForm">
+              <h3 class="full">New claim</h3>
+              <label class="full">Active policy<select id="claimPolicy" required></select></label>
+              <label class="full">Claim amount (₹)<input id="claimAmount" type="number" min="1" step="1" required></label>
+              <label class="full">Description<textarea id="claimDescription" minlength="10" maxlength="1000" required></textarea></label>
+              <button class="primary full" type="submit">Submit Claim</button><p class="form-message full" id="claimMsg"></p>
+            </form>
+            <div class="card"><h3>Claim history</h3><div id="claimList" class="list"></div></div>
+          </div>
+        </section>
+
+        <section class="dash-section hidden" data-panel="payments">
+          <div class="dash-title"><div><p class="eyebrow">Payments</p><h1>Premium payment records</h1></div></div>
+          <div class="alert">This portal records a payment declaration for administrator verification. It does not charge a bank account or card.</div>
+          <div class="two-col">
+            <form class="card form-grid" id="paymentForm">
+              <h3 class="full">Record a payment</h3>
+              <label class="full">Active policy<select id="paymentPolicy" required></select></label>
+              <label class="full">Amount (₹)<input id="paymentAmount" type="number" min="1" step="1" required></label>
+              <button class="primary full" type="submit">Submit Payment Record</button><p class="form-message full" id="paymentMsg"></p>
+            </form>
+            <div class="card"><h3>Payment history</h3><div id="paymentList" class="list"></div></div>
+          </div>
+        </section>
+
+        <section class="dash-section hidden" data-panel="settings">
+          <div class="dash-title"><div><p class="eyebrow">Security</p><h1>Account settings</h1></div></div>
+          <form class="card form-grid narrow" id="passwordForm">
+            <label class="full">Current password<input id="currentPassword" type="password" autocomplete="current-password" required></label>
+            <label class="full">New password<input id="newPassword" type="password" autocomplete="new-password" minlength="8" maxlength="128" required></label>
+            <button class="primary full" type="submit">Change Password</button><p class="form-message full" id="passwordMsg"></p>
+          </form>
+        </section>
+      </div>
+    </section>
+
+    <section class="dashboard hidden" id="adminView">
+      <aside class="sidebar admin-side">
+        <div><p class="eyebrow">Administrator</p><h2>SecureLife Admin</h2><p id="adminEmail" class="muted"></p></div>
+        <div class="side-nav" id="adminNav">
+          <button data-admin-section="adminOverview" class="active">Overview</button><button data-admin-section="adminPolicies">Policies</button><button data-admin-section="adminClaims">Claims</button><button data-admin-section="adminPayments">Payments</button><button data-admin-section="adminContacts">Enquiries</button><button data-admin-section="adminUsers">Users</button>
+        </div>
+      </aside>
+      <div class="dash-content">
+        <section class="admin-section" data-admin-panel="adminOverview"><div class="dash-title"><div><p class="eyebrow">Management</p><h1>Administration overview</h1></div></div><div class="stats" id="adminStats"></div></section>
+        <section class="admin-section hidden" data-admin-panel="adminPolicies"><div class="dash-title"><div><p class="eyebrow">Management</p><h1>Policy review</h1></div></div><div class="table-wrap"><table><thead><tr><th>User</th><th>Policy</th><th>Coverage</th><th>Premium</th><th>Status</th><th>Action</th></tr></thead><tbody id="adminPoliciesBody"></tbody></table></div></section>
+        <section class="admin-section hidden" data-admin-panel="adminClaims"><div class="dash-title"><div><p class="eyebrow">Management</p><h1>Claim review</h1></div></div><div class="table-wrap"><table><thead><tr><th>User</th><th>Policy</th><th>Amount</th><th>Description</th><th>Status</th><th>Action</th></tr></thead><tbody id="adminClaimsBody"></tbody></table></div></section>
+        <section class="admin-section hidden" data-admin-panel="adminPayments"><div class="dash-title"><div><p class="eyebrow">Management</p><h1>Payment verification</h1></div></div><div class="table-wrap"><table><thead><tr><th>User</th><th>Policy</th><th>Amount</th><th>Reference</th><th>Status</th><th>Action</th></tr></thead><tbody id="adminPaymentsBody"></tbody></table></div></section>
+        <section class="admin-section hidden" data-admin-panel="adminContacts"><div class="dash-title"><div><p class="eyebrow">Management</p><h1>Support enquiries</h1></div></div><div class="table-wrap"><table><thead><tr><th>Customer</th><th>Contact</th><th>Message</th><th>Status</th><th>Action</th></tr></thead><tbody id="adminContactsBody"></tbody></table></div></section>
+        <section class="admin-section hidden" data-admin-panel="adminUsers"><div class="dash-title"><div><p class="eyebrow">Management</p><h1>Registered users</h1></div></div><div class="table-wrap"><table><thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Joined</th></tr></thead><tbody id="adminUsersBody"></tbody></table></div></section>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 SecureLife Insurance Portal · Secure customer service platform</footer>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
