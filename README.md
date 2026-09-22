@@ -1,26 +1,26 @@
-# Hi, I'm Prathmesh Dake 👋
+# SecureLife Insurance Portal
 
-💻 Frontend Developer | Java Developer
+A deployment-ready replacement for the original static insurance project.
 
-🌱 Currently learning:
-- React.js
-- Spring Boot
-- MySQL
-- Java
-- JavaScript
+## Features
+- Secure customer registration/login with bcrypt password hashing and JWT sessions
+- PostgreSQL persistence
+- Policy applications and admin approval
+- Claim submission and status tracking
+- Premium payment records with admin verification (record-keeping only; no card/bank charging)
+- Public support enquiries
+- Admin dashboard for users, policies, claims, payments and enquiries
+- Password change flow
+- Security headers, rate limiting, input validation and protected admin APIs
+- Responsive single-page UI
 
-🚀 Projects:
+## Environment variables
+Set `DATABASE_URL`, `JWT_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, and optionally `DB_SSL`.
 
-- Online Banking System
-- Portfolio Website
-- To-Do List Application
+## Run
+```bash
+npm install
+npm start
+```
 
-🛠️ Skills:
-HTML | CSS | JavaScript | Bootstrap | Java | Spring Boot | MySQL | Git | GitHub
-
-📫 Contact:
-Email: prathmeshdake8889@gmail.com
-LinkedIn: www.linkedin.com/in/prathmeshdake8889
-
-⚡ Goal:
-Looking for Frontend Developer and Java Developer opportunities.
+Health check: `GET /api/health`
